@@ -73,17 +73,6 @@ const PROJECTS = [
     },
 ];
 
-const EVENTS = [
-    { title: 'Workshop de React', category: 'workshop', image: '', icon: 'fas fa-chalkboard-user', date: 'Mar 2026', desc: 'Workshop introdutório para iniciantes em React.' },
-    { title: 'Hackathon Regional', category: 'hackathon', image: '', icon: 'fas fa-trophy', date: 'Mai 2026', desc: '48 horas construindo uma solução em equipe.' },
-    { title: 'Palestra sobre Carreira', category: 'talk', image: '', icon: 'fas fa-microphone', date: 'Jul 2026', desc: 'Compartilhando a jornada na área de tecnologia.' },
-    { title: 'Workshop de Git', category: 'workshop', image: '', icon: 'fab fa-git-alt', date: 'Ago 2026', desc: 'Versionamento na prática, do commit ao pull request.' },
-    { title: 'Game Jam', category: 'hackathon', image: '', icon: 'fas fa-gamepad', date: 'Set 2026', desc: 'Criação de um jogo em um fim de semana.' },
-    { title: 'Meetup de Devs', category: 'talk', image: '', icon: 'fas fa-users', date: 'Out 2026', desc: 'Encontro da comunidade local de desenvolvimento.' },
-];
-
-const CATEGORY_LABEL = { workshop: 'Workshop', hackathon: 'Hackathon', talk: 'Palestra' };
-
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* =========================================================
@@ -137,7 +126,7 @@ window.addEventListener('mousemove', (e) => {
 })();
 
 document.addEventListener('mouseover', (e) => {
-    ring.classList.toggle('hover', !!e.target.closest('a, button, .event-card, input, textarea'));
+    ring.classList.toggle('hover', !!e.target.closest('a, button, input, textarea'));
 });
 
 /* =========================================================
@@ -359,56 +348,6 @@ function renderProjects() {
 renderProjects();
 
 /* =========================================================
-   GALERIA + LIGHTBOX
-   ========================================================= */
-const galleryGrid = document.getElementById('gallery-grid');
-function mediaHTML(item) {
-    return item.image
-        ? `<img src="${item.image}" alt="${item.title}" loading="lazy">`
-        : `<div class="thumb-ph"><i class="${item.icon}"></i></div>`;
-}
-function renderGallery(filter) {
-    const list = EVENTS.filter((e) => filter === 'all' || e.category === filter);
-    galleryGrid.innerHTML = list.map((e, i) => `
-        <div class="event-card" data-index="${EVENTS.indexOf(e)}" style="animation-delay:${i * 0.08}s" tabindex="0">
-            <div class="event-img">
-                ${mediaHTML(e)}
-                <span class="tag">${CATEGORY_LABEL[e.category]}</span>
-                <div class="event-overlay"><span><i class="fas fa-expand"></i> Ver</span></div>
-            </div>
-            <div class="event-body">
-                <h4>${e.title}</h4>
-                <p>${e.desc}</p>
-                <small><i class="far fa-calendar"></i> ${e.date}</small>
-            </div>
-        </div>`).join('');
-}
-setupTabs('gallery-filters', 'filter', renderGallery);
-
-const lightbox = document.getElementById('lightbox');
-function openLightbox(idx) {
-    const e = EVENTS[idx];
-    document.getElementById('lightbox-img').innerHTML = mediaHTML(e);
-    document.getElementById('lightbox-tag').textContent = CATEGORY_LABEL[e.category];
-    document.getElementById('lightbox-title').textContent = e.title;
-    document.getElementById('lightbox-desc').textContent = `${e.date} · ${e.desc}`;
-    lightbox.classList.add('open');
-}
-function closeLightbox() { lightbox.classList.remove('open'); }
-
-galleryGrid.addEventListener('click', (ev) => {
-    const card = ev.target.closest('.event-card');
-    if (card) openLightbox(+card.dataset.index);
-});
-galleryGrid.addEventListener('keydown', (ev) => {
-    const card = ev.target.closest('.event-card');
-    if (card && (ev.key === 'Enter' || ev.key === ' ')) { ev.preventDefault(); openLightbox(+card.dataset.index); }
-});
-document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
-lightbox.addEventListener('click', (ev) => { if (ev.target === lightbox) closeLightbox(); });
-document.addEventListener('keydown', (ev) => { if (ev.key === 'Escape') closeLightbox(); });
-
-/* =========================================================
    TABS genéricas
    ========================================================= */
 function setupTabs(containerId, attr, render) {
@@ -578,48 +517,27 @@ function renderRecentRepos(repos) {
 loadGitHub();
 
 /* =========================================================
-   SLIDER DE DEPOIMENTOS
+   FORMULÁRIO — envia a mensagem para o WhatsApp
    ========================================================= */
-const track = document.getElementById('slider-track');
-const slides = track.children;
-const dotsWrap = document.getElementById('slider-dots');
-let slide = 0, autoSlide;
-
-[...slides].forEach((_, i) => {
-    const dot = document.createElement('button');
-    dot.setAttribute('aria-label', `Depoimento ${i + 1}`);
-    dot.addEventListener('click', () => { goTo(i); restartAuto(); });
-    dotsWrap.appendChild(dot);
-});
-
-function goTo(i) {
-    slide = (i + slides.length) % slides.length;
-    track.style.transform = `translateX(-${slide * 100}%)`;
-    [...dotsWrap.children].forEach((d, idx) => d.classList.toggle('active', idx === slide));
-}
-function restartAuto() {
-    clearInterval(autoSlide);
-    autoSlide = setInterval(() => goTo(slide + 1), 5000);
-}
-document.getElementById('prev').addEventListener('click', () => { goTo(slide - 1); restartAuto(); });
-document.getElementById('next').addEventListener('click', () => { goTo(slide + 1); restartAuto(); });
-goTo(0);
-restartAuto();
-
-/* =========================================================
-   FORMULÁRIO
-   Para envio real, use Formspree/EmailJS/Netlify Forms.
-   ========================================================= */
+const WHATSAPP = '5585987689986';
 const form = document.getElementById('contact-form');
 const status = document.getElementById('form-status');
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const data = new FormData(form);
-    const subject = encodeURIComponent(data.get('subject'));
-    const body = encodeURIComponent(`${data.get('message')}\n\n— ${data.get('name')} (${data.get('email')})`);
-    window.location.href = `mailto:kesleysantos.dev@gmail.com?subject=${subject}&body=${body}`;
+    const text = [
+        'Olá, Kesley! Vim pelo seu portfólio.',
+        '',
+        `*Nome:* ${data.get('name')}`,
+        `*E-mail:* ${data.get('email')}`,
+        `*Assunto:* ${data.get('subject')}`,
+        '',
+        `*Mensagem:*`,
+        data.get('message'),
+    ].join('\n');
+    window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`, '_blank', 'noopener');
     status.className = 'form-status ok';
-    status.textContent = 'Abrindo seu app de e-mail… Obrigado pela mensagem!';
+    status.textContent = 'Abrindo o WhatsApp… Obrigado pela mensagem!';
     form.reset();
 });
 
