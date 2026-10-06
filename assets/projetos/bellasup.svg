@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c46f8f"/><stop offset=".55" stop-color="#d68c84"/><stop offset="1" stop-color="#e6a85c"/>
+    </linearGradient>
+    <filter id="s"><feDropShadow dx="0" dy="4" stdDeviation="6" flood-opacity=".25"/></filter>
+  </defs>
+  <rect width="800" height="500" fill="url(#g)"/>
+  <g fill="#fff" opacity=".35">
+    <rect x="120" y="110" width="44" height="44" rx="10"/><rect x="600" y="90" width="40" height="40" rx="10"/>
+    <rect x="650" y="300" width="46" height="46" rx="10"/><rect x="190" y="360" width="34" height="34" rx="8"/>
+  </g>
+  <g fill="#fff" opacity=".6" font-family="Georgia, serif" font-size="22">
+    <text x="300" y="120">✦</text><text x="520" y="390">✦</text><text x="90" y="290">✦</text><text x="700" y="200">✦</text>
+  </g>
+  <text x="400" y="255" text-anchor="middle" font-family="'Playfair Display', Georgia, 'Times New Roman', serif" font-size="78" fill="#fff" filter="url(#s)">BellasUp</text>
+  <text x="400" y="305" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" fill="#fff" opacity=".92">Sistema Inteligente Para Manicures</text>
+</svg>
