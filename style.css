@@ -580,7 +580,8 @@ body.light .floating-badge { background: rgba(255, 255, 255, 0.9); color: var(--
 .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #4ade80; animation: pulse 1.8s infinite; }
 @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(74, 222, 128, 0.6); } 100% { box-shadow: 0 0 0 10px rgba(74, 222, 128, 0); } }
 
-.challenge-grid { display: grid; grid-template-columns: 1fr 1.4fr; gap: 1.5rem; }
+.challenge-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 1.5rem; }
+.challenge-grid > * { min-width: 0; }
 .card {
     padding: 1.8rem; border-radius: 20px;
     background: var(--card); border: 1px solid var(--border); transition: var(--t);
@@ -751,7 +752,8 @@ body.light .activity-chart span { background: rgba(0, 0, 0, 0.06); }
     .hero-socials { display: none; }
     .hero-img-wrapper { width: 320px; height: 320px; }
     .hero-avatar { inset: 45px; }
-    .about-grid, .contact-grid, .timeline-grid, .challenge-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-grid, .contact-grid, .timeline-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .challenge-grid { grid-template-columns: minmax(0, 1fr); }
     .services-grid { grid-template-columns: 1fr; }
     .scroll-indicator { display: none; }
     .tabs.small { justify-content: flex-start; }
@@ -773,7 +775,21 @@ body.light .activity-chart span { background: rgba(0, 0, 0, 0.06); }
     .info-grid, .form-row { grid-template-columns: 1fr; }
     .exp-badge { right: 0; }
     .about-img::before { inset: 14px -10px -14px 14px; }
-    .difficulty { flex-direction: column; }
+    .difficulty { flex-direction: column; gap: 1.5rem; }
+    .difficulty-list { width: 100%; }
+    .card { padding: 1.3rem; }
+    .card-heading { gap: 0.8rem; margin-bottom: 1.2rem; }
+    .gh-stats { gap: 0.5rem; }
+    .gh-stats div { padding: 0.7rem 0.3rem; }
+    .gh-stats strong { font-size: 1.15rem; }
+    .gh-stats span { font-size: 0.66rem; }
+    .profile-head { gap: 0.8rem; }
+    .profile-head > div { min-width: 0; }
+    .profile-link { overflow-wrap: anywhere; }
+    .activity-chart { gap: 2px; }
+    .activity-chart span { width: 8px; height: 8px; border-radius: 2px; }
+    .challenge-intro h3 { font-size: 1.15rem; }
+    .gh-btn { width: 100%; justify-content: center; }
     .challenge-intro { flex-direction: column; align-items: flex-start; padding: 1.5rem; }
     .contact-form { padding: 1.5rem; }
     .footer-inner { grid-template-columns: 1fr; text-align: center; }
