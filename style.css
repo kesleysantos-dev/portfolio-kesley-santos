@@ -494,16 +494,16 @@ body.light .floating-badge { background: rgba(255, 255, 255, 0.9); color: var(--
     opacity: 0; transition: opacity 0.4s ease;
 }
 .project-card:hover .project-overlay { opacity: 1; }
-.project-overlay a {
-    width: 48px; height: 48px; border-radius: 50%;
-    display: grid; place-items: center; font-size: 1.1rem;
+.overlay-cta {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.75rem 1.5rem; border-radius: 50px;
+    font-size: 0.9rem; font-weight: 600;
     background: var(--grad-gold); color: #0b0b0c;
     transform: translateY(20px); transition: transform 0.4s var(--ease), box-shadow 0.3s;
 }
-.project-overlay a:nth-child(2) { transition-delay: 0.08s; }
-.project-card:hover .project-overlay a { transform: none; }
-.project-overlay a:hover { box-shadow: 0 0 20px rgba(198, 167, 106, 0.6); }
-.project-card { display: flex; flex-direction: column; }
+.project-card:hover .overlay-cta { transform: none; box-shadow: 0 0 20px rgba(198, 167, 106, 0.5); }
+.project-card { display: flex; flex-direction: column; color: inherit; cursor: pointer; }
+.project-card:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
 .project-info { padding: 1.6rem; flex: 1; display: flex; flex-direction: column; }
 .project-info h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
 .project-info p { font-size: 0.9rem; color: var(--text-2); line-height: 1.7; margin-bottom: 1.1rem; }

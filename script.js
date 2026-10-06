@@ -41,7 +41,7 @@ const PROJECTS = [
             ['Colaboração e Metodologia Ágil', 'Participação em reuniões de alinhamento e ciclos ágeis para levantamento de requisitos, refinamento e entrega de valor ao cliente.'],
         ],
         tags: ['HTML', 'CSS', 'JavaScript', 'Mobile-First'],
-        demo: '#', // coloque aqui o link do site
+        demo: 'https://ellevmobility.com.br/',
         code: '',
     },
     {
@@ -52,7 +52,7 @@ const PROJECTS = [
         desc: '🚀 Aplicação de agendamento e gestão inteligente com validação real-time, integração via API do WhatsApp e checkout Pix com cronômetro reativo. Interface UX/UI fluida e otimizada para conversão. Repositório privado por segurança e propriedade intelectual.',
         note: 'Ao acessar o site, cadastre-se para testar as funcionalidades.',
         tags: ['React', 'TypeScript', 'Tailwind', 'Supabase', 'API WhatsApp', 'Vite'],
-        demo: '#', // coloque aqui o link do site
+        demo: 'https://bellasup.vercel.app/auth',
         code: '',  // vazio = repositório privado (esconde o botão do GitHub)
     },
     {
@@ -68,7 +68,7 @@ const PROJECTS = [
             ['Inovação com Inteligência Artificial', 'Aplicação de ferramentas e agentes de IA para otimização de performance, SEO e integração automatizada de prova social.'],
         ],
         tags: ['HTML', 'CSS', 'JavaScript', 'Mobile-First', 'SEO'],
-        demo: '#', // coloque aqui o link do site
+        demo: 'https://thundereletric.com.br/',
         code: '',
     },
 ];
@@ -328,12 +328,11 @@ setupTabs('skill-tabs', 'cat', renderSkills);
 const projectsGrid = document.getElementById('projects-grid');
 function renderProjects() {
     projectsGrid.innerHTML = PROJECTS.map((p, i) => `
-        <article class="project-card" style="animation-delay:${i * 0.08}s">
+        <a class="project-card" href="${p.demo}" target="_blank" rel="noopener noreferrer" aria-label="Abrir ${p.title} em nova aba" style="animation-delay:${i * 0.08}s">
             <div class="project-thumb${p.logo ? ' is-logo' : ''}"${p.logoGlow ? ` style="--glow:${p.logoGlow}"` : ''}>
                 ${p.image ? `<img src="${p.image}" alt="${p.title}" loading="lazy"${p.imagePosition ? ` style="object-position:${p.imagePosition}"` : ''}>` : `<div class="thumb-ph"><i class="${p.icon}"></i></div>`}
                 <div class="project-overlay">
-                    <a href="${p.demo}" target="_blank" rel="noopener" aria-label="Ver demo"><i class="fas fa-arrow-up-right-from-square"></i></a>
-                    ${p.code ? `<a href="${p.code}" target="_blank" rel="noopener" aria-label="Ver código"><i class="fab fa-github"></i></a>` : ''}
+                    <span class="overlay-cta">Ver site <i class="fas fa-arrow-up-right-from-square"></i></span>
                 </div>
             </div>
             <div class="project-info">
@@ -343,7 +342,7 @@ function renderProjects() {
                 ${p.note ? `<p class="project-note"><i class="fas fa-circle-info"></i> ${p.note}</p>` : ''}
                 <div class="project-tags">${p.tags.map((t) => `<span>${t}</span>`).join('')}</div>
             </div>
-        </article>`).join('');
+        </a>`).join('');
 }
 renderProjects();
 
