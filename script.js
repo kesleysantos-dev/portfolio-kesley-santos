@@ -1,7 +1,7 @@
 /* =========================================================
    DADOS — edite aqui seu conteúdo
    ========================================================= */
-const ROLES = ['Desenvolvedor Frontend | Fullstack', 'Especialista em React', 'Criador de Soluções'];
+const ROLES = ['Engenheiro de Software Pleno', 'Desenvolvedor Fullstack', 'Especialista em React', 'Integração com LLMs'];
 
 const SKILLS = {
     dev: [
@@ -13,13 +13,16 @@ const SKILLS = {
         { name: 'Next.js', icon: 'fas fa-n', color: '#e8e8e8', level: 78 },
         { name: 'Tailwind CSS', icon: 'fas fa-wind', color: '#38bdf8', level: 85 },
         { name: 'Node.js', icon: 'fab fa-node-js', color: '#68a063', level: 70 },
-        { name: 'Supabase', icon: 'fas fa-bolt', color: '#3ecf8e', level: 75 },
+        { name: 'Supabase', icon: 'fas fa-bolt', color: '#3ecf8e', level: 85 },
+        { name: 'PostgreSQL', icon: 'fas fa-database', color: '#4169e1', level: 75 },
+        { name: 'Integração com LLMs', icon: 'fas fa-brain', color: '#d97757', level: 82 },
     ],
     tools: [
         { name: 'Git', icon: 'fab fa-git-alt', color: '#f05032', level: 88 },
         { name: 'GitHub', icon: 'fab fa-github', color: '#e8e8e8', level: 88 },
         { name: 'VS Code', icon: 'fas fa-code', color: '#007acc', level: 92 },
         { name: 'Figma', icon: 'fab fa-figma', color: '#a259ff', level: 70 },
+        { name: 'Mercado Pago', icon: 'fas fa-credit-card', color: '#00b1ea', level: 75 },
         { name: 'Claude', icon: 'fas fa-asterisk', color: '#d97757', level: 92 },
         { name: 'ChatGPT', icon: 'fas fa-robot', color: '#10a37f', level: 88 },
         { name: 'Gemini', icon: 'fas fa-wand-magic-sparkles', color: '#8e75ff', level: 82 },
@@ -28,6 +31,22 @@ const SKILLS = {
 
 // image: 'assets/projetos/nome.jpg' (deixe vazio para usar o placeholder)
 const PROJECTS = [
+    {
+        title: 'Cravou Agenda | Sistema de Agendamento',
+        category: 'fullstack',
+        image: 'assets/projetos/cravou-agenda.webp',
+        logo: true,
+        logoGlow: 'rgba(255, 112, 20, 0.18)',
+        icon: 'fas fa-scissors',
+        desc: 'Sistema multi-tenant de agendamento e gestão para barbearias e salões, desenvolvido de ponta a ponta e com vários estabelecimentos pagantes.',
+        points: [
+            ['Front-end', 'Painéis para dono, equipe, afiliados e super admin, além de página pública de agendamento mobile-first.'],
+            ['Back-end', 'Supabase com controle de acesso por perfil e Edge Functions para assinatura recorrente no cartão, estornos e webhooks do Mercado Pago.'],
+        ],
+        tags: ['React', 'TypeScript', 'Supabase', 'Edge Functions', 'Mercado Pago'],
+        demo: 'https://cravouagenda.vercel.app/',
+        code: '',
+    },
     {
         title: 'Ellev Mobility | Site Institucional',
         category: 'web',
