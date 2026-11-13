@@ -32,6 +32,38 @@ const SKILLS = {
 // image: 'assets/projetos/nome.jpg' (deixe vazio para usar o placeholder)
 const PROJECTS = [
     {
+        title: 'Ellev Mobility | Site Institucional',
+        category: 'web',
+        image: 'assets/projetos/ellev-logo.jpg',
+        logo: true,
+        logoGlow: 'rgba(255, 255, 255, 0.10)',
+        icon: 'fas fa-motorcycle',
+        desc: 'Desenvolvimento de site institucional e catálogo interativo de produtos priorizando alta usabilidade, arquitetura limpa e JavaScript moderno.',
+        points: [
+            ['Testes de Responsividade & Otimização', 'Execução de testes no código e testes cross-browser para assegurar compatibilidade mobile-first e rápido carregamento.'],
+            ['Colaboração e Metodologia Ágil', 'Participação em reuniões de alinhamento e ciclos ágeis para levantamento de requisitos, refinamento e entrega de valor ao cliente.'],
+        ],
+        tags: ['HTML', 'CSS', 'JavaScript', 'Mobile-First'],
+        demo: 'https://ellevmobility.com.br/',
+        code: '',
+    },
+    {
+        title: 'Pentesty | Segurança Ofensiva',
+        category: 'web',
+        image: 'assets/projetos/pentesty.svg',
+        logo: true,
+        logoGlow: 'rgba(76, 196, 220, 0.16)',
+        icon: 'fas fa-shield-halved',
+        desc: 'Site institucional da Pentesty, empresa de segurança ofensiva para a era da IA, apresentando pentests, Red Team e análises automatizadas com foco em gerar contato comercial.',
+        points: [
+            ['Multilíngue', 'Conteúdo em português, inglês e espanhol com rotas por idioma.'],
+            ['Experiência e conversão', 'Seções interativas de serviços, metodologia e prova social, com chamadas para montar programa ou projeto.'],
+        ],
+        tags: ['Next.js', 'React', 'i18n', 'SEO', 'Responsivo'],
+        demo: 'https://www.pentesty.co/pt',
+        code: '',
+    },
+    {
         title: 'Cravou Agenda | Sistema de Agendamento',
         category: 'fullstack',
         image: 'assets/projetos/cravou-agenda.webp',
@@ -48,19 +80,19 @@ const PROJECTS = [
         code: '',
     },
     {
-        title: 'Ellev Mobility | Site Institucional',
+        title: 'Maria Alice Andrade | Psicologia Clínica',
         category: 'web',
-        image: 'assets/projetos/ellev-logo.jpg',
+        image: 'assets/projetos/maria-alice.svg',
         logo: true,
-        logoGlow: 'rgba(255, 255, 255, 0.10)',
-        icon: 'fas fa-motorcycle',
-        desc: 'Desenvolvimento de site institucional e catálogo interativo de produtos priorizando alta usabilidade, arquitetura limpa e JavaScript moderno.',
+        logoGlow: 'rgba(214, 170, 190, 0.16)',
+        icon: 'fas fa-brain',
+        desc: 'Site para psicóloga e psicanalista clínica com atendimento online e presencial, pensado para transmitir acolhimento e transformar visitantes em pacientes.',
         points: [
-            ['Testes de Responsividade & Otimização', 'Execução de testes no código e testes cross-browser para assegurar compatibilidade mobile-first e rápido carregamento.'],
-            ['Colaboração e Metodologia Ágil', 'Participação em reuniões de alinhamento e ciclos ágeis para levantamento de requisitos, refinamento e entrega de valor ao cliente.'],
+            ['Triagem rápida', 'Questionário de menos de um minuto que envia as respostas organizadas direto para o WhatsApp da profissional.'],
+            ['Conteúdo que converte', 'Seções de especialidades, como funciona e FAQ, com chamadas claras para agendar a sessão.'],
         ],
-        tags: ['HTML', 'CSS', 'JavaScript', 'Mobile-First'],
-        demo: 'https://ellevmobility.com.br/',
+        tags: ['React', 'Vite', 'WhatsApp', 'SEO', 'Mobile-First'],
+        demo: 'https://www.mariaaliceandrade-psico.com.br/',
         code: '',
     },
     {
@@ -453,10 +485,7 @@ async function loadGitHub() {
     if (repos.status === 'fulfilled') {
         const own = repos.value.filter((r) => !r.fork);
         renderLanguages(own);
-        renderRecentRepos(own.slice(0, 3));
     } else {
-        document.getElementById('gh-repos-list').innerHTML =
-            `<div class="focus-item"><i class="fab fa-github"></i><div><strong>Veja no GitHub</strong><p><a class="accent" href="https://github.com/${GH_USER}?tab=repositories" target="_blank" rel="noopener">Abrir lista de repositórios</a></p></div></div>`;
         renderLanguages([]);
     }
 
@@ -505,19 +534,6 @@ function animateDonut() {
         if (t < 1) requestAnimationFrame(tick);
     })(start);
     document.getElementById('lang-list').closest('.reveal')?.classList.add('visible');
-}
-
-function renderRecentRepos(repos) {
-    const fmt = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' });
-    document.getElementById('gh-repos-list').innerHTML = repos.map((r) => `
-        <a class="focus-item repo-item" href="${r.html_url}" target="_blank" rel="noopener">
-            <i class="fas fa-book-bookmark"></i>
-            <div>
-                <strong>${r.name}</strong>
-                <p>${r.description ? r.description : 'Sem descrição.'}</p>
-                <small>${r.language ? `<span class="diff-dot" style="background:${LANG_COLORS[r.language] || '#c6a76a'}"></span>${r.language} · ` : ''}Atualizado em ${fmt.format(new Date(r.pushed_at))}</small>
-            </div>
-        </a>`).join('') || '<p class="muted">Nenhum repositório público ainda.</p>';
 }
 
 // Grade ilustrativa (preenchimento fictício)

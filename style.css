@@ -587,6 +587,7 @@ body.light .floating-badge { background: rgba(255, 255, 255, 0.9); color: var(--
 
 .challenge-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: 1.5rem; }
 .challenge-grid > * { min-width: 0; }
+.activity-card { grid-column: 1 / -1; }
 .card {
     padding: 1.8rem; border-radius: 20px;
     background: var(--card); border: 1px solid var(--border); transition: var(--t);

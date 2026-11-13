@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600">
+  <rect width="600" height="600" fill="#f5ede3"/>
+  <circle cx="300" cy="235" r="78" fill="none" stroke="#66304f" stroke-width="2.5"/>
+  <text x="300" y="262" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif" font-size="78" font-style="italic" fill="#4a2238">MA</text>
+  <text x="300" y="380" text-anchor="middle" font-family="'Cormorant Garamond', Georgia, 'Times New Roman', serif" font-size="44" fill="#4a2238">Maria Alice Andrade</text>
+  <text x="300" y="420" text-anchor="middle" font-family="'Segoe UI', system-ui, sans-serif" font-size="15" letter-spacing="3.5" fill="#66304f">PSICOLOGIA E PSICANÁLISE</text>
+</svg>
