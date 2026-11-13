@@ -134,9 +134,22 @@ const loaderFill = document.getElementById('loader-fill');
 const loaderPercent = document.getElementById('loader-percent');
 document.body.classList.add('loading');
 
+// Só libera a página quando fontes e imagens do topo terminaram de carregar
+// (com limite de 4s), para o conteúdo não "pular" ao aparecer.
+let assetsReady = false;
+Promise.race([
+    Promise.all([
+        document.fonts ? document.fonts.ready : Promise.resolve(),
+        document.readyState === 'complete'
+            ? Promise.resolve()
+            : new Promise((resolve) => window.addEventListener('load', resolve, { once: true })),
+    ]),
+    new Promise((resolve) => setTimeout(resolve, 4000)),
+]).then(() => { assetsReady = true; });
+
 let progress = 0;
 const loadTimer = setInterval(() => {
-    progress = Math.min(100, progress + Math.random() * 18 + 6);
+    progress = Math.min(assetsReady ? 100 : 90, progress + Math.random() * 18 + 6);
     loaderFill.style.transform = `scaleX(${progress / 100})`;
     loaderPercent.textContent = `${Math.round(progress)}%`;
     if (progress >= 100) {
@@ -144,8 +157,9 @@ const loadTimer = setInterval(() => {
         setTimeout(() => {
             loader.classList.add('hidden');
             document.body.classList.remove('loading');
-            startHero();
-        }, 300);
+            // espera o loader sumir antes de animar o topo (evita sobreposição)
+            setTimeout(startHero, reduceMotion ? 0 : 380);
+        }, 200);
     }
 }, 110);
 
