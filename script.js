@@ -139,7 +139,13 @@ document.body.classList.add('loading');
 let assetsReady = false;
 Promise.race([
     Promise.all([
-        document.fonts ? document.fonts.ready : Promise.resolve(),
+        // força o download das fontes usadas no topo (Poppins e ícones) e espera terminarem
+        document.fonts
+            ? Promise.all([
+                '400 1em Poppins', '600 1em Poppins', '700 1em Poppins', '900 1em Poppins',
+                '900 1em "Font Awesome 6 Free"', '400 1em "Font Awesome 6 Brands"',
+            ].map((f) => document.fonts.load(f).catch(() => {}))).then(() => document.fonts.ready)
+            : Promise.resolve(),
         document.readyState === 'complete'
             ? Promise.resolve()
             : new Promise((resolve) => window.addEventListener('load', resolve, { once: true })),

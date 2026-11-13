@@ -265,6 +265,9 @@ body.light .mobile-menu { background: rgba(246, 244, 239, 0.97); }
 }
 .hero-anim { opacity: 0; transform: translateY(40px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
 .hero-anim.in { opacity: 1; transform: none; }
+/* a foto entra só com fade + leve zoom, sem subir/descer */
+.hero-visual.hero-anim { transform: scale(0.94); transition: opacity 1s var(--ease), transform 1.1s var(--ease); }
+.hero-visual.hero-anim.in { transform: none; }
 
 .hero-greeting { font-size: 1.1rem; color: var(--text-2); margin-bottom: 0.4rem; }
 .hero-name { font-size: clamp(2.6rem, 6vw, 4.2rem); font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
